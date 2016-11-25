@@ -12,7 +12,11 @@ export default {
 
 <style scoped>
 .navbar {
-  height: 80px;
-  background-color: #e2e2e2;
+  background-color: #2e2e2e;
+  padding: 10px 0;
+}
+
+img {
+  height: 40px;
 }
 </style>
