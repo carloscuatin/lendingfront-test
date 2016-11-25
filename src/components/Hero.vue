@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'hero',
+  name: 'Hero',
   data() {
     return {
       text: 'Advances for syndication'

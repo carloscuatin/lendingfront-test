@@ -3,23 +3,37 @@
     <div :class="$style.sidebar">
       <span :class="$style.title">{{ title }}</span>
       <div :class="$style.items">
-        <div v-for="item in items">a</div>
+        <Product v-for="item in items" :item="item"></Product>
       </div>
     </div>
     <div>
-      <router-view />
+      <router-view/>
     </div>
   </div>
 </template>
 
 <script>
+import Product from './Product';
+
 export default {
-  name: 'dashboard',
+  name: 'Dashboard',
   data() {
     return {
-      items: [1, 2],
+      items: [
+        {
+          id: 1,
+          price: '$2.700.800'
+        },
+        {
+          id: 2,
+          price: '$2.700.800'
+        }
+      ],
       title: 'Select a product to syndicate'
     };
+  },
+  components: {
+    Product
   }
 };
 </script>
@@ -53,6 +67,5 @@ export default {
 }
 
 .items {
-  padding: 0 20px;
 }
 </style>

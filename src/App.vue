@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <Navbar />
+    <Navbar/>
     <div class="container">
       <div class="center">
-        <Hero />
-        <Dashboard />
+        <Hero/>
+        <Dashboard/>
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@ import Hero from './components/Hero';
 import Dashboard from './components/Dashboard';
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     Navbar,
     Hero,
