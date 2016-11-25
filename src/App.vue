@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <Navbar></Navbar>
+    <Navbar />
+    <Hero />
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar';
+import Hero from './components/Hero';
 
 export default {
   name: 'app',
   components: {
-    Navbar
+    Navbar,
+    Hero
   }
 };
 </script>
@@ -18,9 +21,8 @@ export default {
 <style src="normalize.css/normalize.css"></style>
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Maven Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
 }
 </style>
