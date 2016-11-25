@@ -4,6 +4,9 @@
     <div class="container">
       <div class="center">
         <Hero />
+        <router-link to="/foo">Go to Foo</router-link>
+        <router-link to="/bar">Go to Bar</router-link>
+        <router-view></router-view>
       </div>
     </div>
   </div>
