@@ -1,5 +1,5 @@
 {
-  "name": "lendingfront-frontend-test",
+  "name": "lendingfront-test",
   "version": "1.0.0",
   "description": "A test for lendingfront with Vue.js",
   "author": "Carlos Cuatin <cecg1996@gmail.com>",
@@ -10,6 +10,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "normalize.css": "^5.0.0",
     "vue": "^2.0.1"
   },
   "devDependencies": {
