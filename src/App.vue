@@ -4,8 +4,6 @@
     <div class="container">
       <div class="center">
         <Hero />
-        <router-link to="/foo">Go to Foo</router-link>
-        <router-link to="/bar">Go to Bar</router-link>
         <Dashboard />
       </div>
     </div>
@@ -34,15 +32,16 @@ export default {
   font-family: 'Maven Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f9f9fc;
 }
 
 .container {
   height: 150px;
-  background-color: #13939d;
+  background-color: #00a3ad;
 }
 
 .center {
-  width: 80%;
+  width: 85%;
   margin: 0 auto;
 }
 </style>
