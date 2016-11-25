@@ -1,5 +1,7 @@
 <template>
-  <h1>{{ text }}</h1>
+  <h1 :class="$style.title">
+    {{ text }}
+  </h1>
 </template>
 
 <script>
@@ -13,8 +15,8 @@ export default {
 };
 </script>
 
-<style scoped>
-h1 {
+<style module>
+.title {
   color: #ffffff;
   margin: 0;
   padding-top: 20px;

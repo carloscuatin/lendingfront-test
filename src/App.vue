@@ -6,7 +6,7 @@
         <Hero />
         <router-link to="/foo">Go to Foo</router-link>
         <router-link to="/bar">Go to Bar</router-link>
-        <router-view></router-view>
+        <Dashboard />
       </div>
     </div>
   </div>
@@ -15,18 +15,21 @@
 <script>
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Dashboard from './components/Dashboard';
 
 export default {
   name: 'app',
   components: {
     Navbar,
-    Hero
+    Hero,
+    Dashboard
   }
 };
 </script>
 
-<style src="normalize.css/normalize.css"></style>
 <style>
+@import '~normalize.css/normalize.css';
+
 #app {
   font-family: 'Maven Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
