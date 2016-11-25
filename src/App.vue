@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Navbar />
-    <Hero />
+    <div class="container">
+      <div class="center">
+        <Hero />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,5 +28,15 @@ export default {
   font-family: 'Maven Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  height: 150px;
+  background-color: #13939d;
+}
+
+.center {
+  width: 80%;
+  margin: 0 auto;
 }
 </style>

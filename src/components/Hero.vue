@@ -1,7 +1,5 @@
 <template>
-  <div class="container">
-    <h1>{{ text }}</h1>
-  </div>
+  <h1>{{ text }}</h1>
 </template>
 
 <script>
@@ -16,14 +14,10 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  height: 150px;
-  background-color: #13939d;
-}
-
 h1 {
   color: #ffffff;
   margin: 0;
+  padding-top: 20px;
   font-weight: lighter;
 }
 </style>

@@ -14,6 +14,7 @@ export default {
 .navbar {
   background-color: #2e2e2e;
   padding: 10px 0;
+  text-align: center;
 }
 
 img {
