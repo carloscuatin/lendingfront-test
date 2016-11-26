@@ -1,7 +1,8 @@
 <template>
   <router-link
     :to="{ name: 'product', params: { id: item.id }}"
-    :class="$style.container">
+    :class="$style.container"
+    :active-class="$style.active">
     {{ item.id }} - {{ item.price }}
   </router-link>
 </template>
@@ -15,13 +16,14 @@ export default {
 
 <style module>
 .container {
-  height: 100px;
+  height: 75px;
   text-decoration: none;
   padding: 20px 20px 10px;
   background-color: #fafafa;
 }
 
-.container:hover {
+.container:hover,
+.active {
   background-color: #00a3ad;
 };
 </style>
