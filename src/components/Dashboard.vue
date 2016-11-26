@@ -2,11 +2,11 @@
   <div :class="$style.container">
     <div :class="$style.sidebar">
       <span :class="$style.title">{{ title }}</span>
-      <div :class="$style.items">
-        <Product v-for="item in items" :item="item"></Product>
+      <div :class="$style.products">
+        <Product v-for="product in products" :product="product"></Product>
       </div>
     </div>
-    <div>
+    <div :class="$style.product">
       <router-view/>
     </div>
   </div>
@@ -19,7 +19,7 @@ export default {
   name: 'Dashboard',
   data() {
     return {
-      items: [
+      products: [
         {
           id: 1,
           price: '$2.700.800'
@@ -47,7 +47,7 @@ export default {
   border: 1px solid #d5d5d8;
   border-top: 0;
   background-color: #ffffff;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1), 0 1px 6px 0 rgba(0,0,0,0.2);
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1), 0px 1px 6px 0px rgba(0,0,0,0.2);
 }
 
 .sidebar {
@@ -66,8 +66,13 @@ export default {
   background-color: #f4f4f4;
 }
 
-.items {
+.products {
   display: flex;
   flex-direction: column;
+}
+
+.product {
+  width: 69%;
+  box-shadow: -10px 0px 10px -4px rgba(0,0,0,0.1), -10px 0px 10px -4px rgba(0,0,0,0.2);
 }
 </style>
