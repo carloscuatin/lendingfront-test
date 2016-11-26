@@ -5,8 +5,7 @@ import App from './App';
 Vue.use(VueRouter);
 
 const Home = { template: '<div>home</div>' };
-const Foo = { template: '<div>foo</div>' };
-const Bar = { template: '<div>bar</div>' };
+const Foo = { template: '<div>{{ $route.params.id }}</div>' };
 
 // 3. Create the router
 const router = new VueRouter({
@@ -14,8 +13,11 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     { path: '/', component: Home },
-    { path: '/foo', component: Foo },
-    { path: '/bar', component: Bar }
+    {
+      path: '/product/:id',
+      name: 'product',
+      component: Foo
+    }
   ]
 });
 

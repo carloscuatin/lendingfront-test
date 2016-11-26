@@ -67,5 +67,7 @@ export default {
 }
 
 .items {
+  display: flex;
+  flex-direction: column;
 }
 </style>
