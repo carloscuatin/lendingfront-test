@@ -36,6 +36,7 @@ export default {
 }
 
 .container {
+  padding-top: 60px;
   height: 150px;
   background-color: #00a3ad;
 }

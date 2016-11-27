@@ -19,7 +19,7 @@ export default {
 .title {
   color: #ffffff;
   margin: 0;
-  padding-top: 20px;
+  padding-top: 25px;
   font-weight: lighter;
 }
 </style>

@@ -71,6 +71,7 @@ export default {
 .products {
   display: flex;
   flex-direction: column;
+  padding-bottom: 40px;
 }
 
 .product {

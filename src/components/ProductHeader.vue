@@ -21,7 +21,7 @@ export default {
 <style module>
 .header {
   position: relative;
-  height: 79px;
+  height: 74px;
   color: #ffffff;
   background-color: #00cfc9;
 }
