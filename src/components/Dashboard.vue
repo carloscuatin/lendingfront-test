@@ -44,8 +44,6 @@ export default {
   min-height: 150px;
   margin-top: 15px;
   border-radius: 3px;
-  border: 1px solid #d5d5d8;
-  border-top: 0;
   background-color: #ffffff;
   box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1), 0px 1px 6px 0px rgba(0,0,0,0.2);
 }
@@ -73,6 +71,6 @@ export default {
 
 .product {
   width: 69%;
-  box-shadow: -10px 0px 10px -4px rgba(0,0,0,0.1), -10px 0px 10px -4px rgba(0,0,0,0.2);
+  box-shadow: -8px 0px 10px -3px rgba(0,0,0,0.2);
 }
 </style>

@@ -16,7 +16,7 @@ export default {
 
 <style module>
 .container {
-  height: 75px;
+  height: 70px;
   color: #424b55;
   text-decoration: none;
   padding: 20px 20px 10px;
