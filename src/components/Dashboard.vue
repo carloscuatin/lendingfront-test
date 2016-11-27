@@ -27,6 +27,10 @@ export default {
         {
           id: 2,
           price: '$2.700.800'
+        },
+        {
+          id: 3,
+          price: '$2.700.800'
         }
       ],
       title: 'Select a product to syndicate'
