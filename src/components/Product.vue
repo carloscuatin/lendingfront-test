@@ -12,6 +12,9 @@
         <span :class="$style.id">{{ product.id }}</span>
         {{ product.date }}
       </div>
+      <div :class="$style.price">
+        {{ product.price }}
+      </div>
     </div>
   </router-link>
 </template>
@@ -60,13 +63,19 @@ export default {
   justify-content: space-between;
   margin-top: 5px;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
   color: #8a8a8a;
 }
 
 .id {
   color: #505962;
   font-size: 18px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 500;
+  text-align: right;
 }
 
 .active .titles,
