@@ -4,6 +4,9 @@
       <i class="material-icons">add</i>
     </button>
     <span :class="$style.id">Product ID {{ id }}</span>
+    <div :class="$style.menu">
+      <span v-for="item in menu">{{ item }}</span>
+    </div>
   </div>
 </template>
 
@@ -13,6 +16,13 @@ export default {
   props: ['id'],
   data() {
     return {
+      menu: [
+        'Investor name',
+        'Left amount',
+        '% Amount',
+        'Sell',
+        '% Purchased'
+      ]
     };
   }
 };
@@ -21,7 +31,7 @@ export default {
 <style module>
 .header {
   position: relative;
-  height: 74px;
+  height: 79px;
   color: #ffffff;
   background-color: #00cfc9;
 }
@@ -42,11 +52,20 @@ export default {
 }
 
 .id {
-  top: 10px;
   position: relative;
+  top: 10px;
   padding-left: 20px;
-  padding-bottom: 2px;
-  border-bottom: 1px solid #fff;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   font-weight: bold;
+}
+
+.menu {
+  position: absolute;
+  bottom: 15px;
+  padding: 0px 20px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
 }
 </style>

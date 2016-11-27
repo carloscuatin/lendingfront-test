@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <div :class="$style.sidebar">
-      <span :class="$style.title">{{ title }}</span>
+      <span :class="$style.title">Select a product to syndicate</span>
       <div :class="$style.products">
         <Product v-for="product in products" :product="product"></Product>
       </div>
@@ -21,19 +21,21 @@ export default {
     return {
       products: [
         {
-          id: 1,
-          price: '$2.700.800'
+          id: 2456,
+          price: '$2.700.800',
+          date: '07/07/2016'
         },
         {
-          id: 2,
-          price: '$2.700.800'
+          id: 2457,
+          price: '$2.700.800',
+          date: '07/07/2016'
         },
         {
-          id: 3,
-          price: '$2.700.800'
+          id: 2458,
+          price: '$2.700.800',
+          date: '07/07/2016'
         }
-      ],
-      title: 'Select a product to syndicate'
+      ]
     };
   },
   components: {
@@ -60,7 +62,7 @@ export default {
 .title {
   display: flex;
   align-items: center;
-  height: 30px;
+  height: 35px;
   padding: 0 20px;
   font-size: 14px;
   color: #9e9e9e;

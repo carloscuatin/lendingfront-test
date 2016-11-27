@@ -8,7 +8,10 @@
         Product ID
         <span :class="$style.type">Advance</span>
       </div>
-      {{ product.id }} - {{ product.price }}
+      <div :class="$style.dates">
+        <span :class="$style.id">{{ product.id }}</span>
+        {{ product.date }}
+      </div>
     </div>
   </router-link>
 </template>
@@ -52,8 +55,24 @@ export default {
   color: #1bacb5;
 }
 
+.dates {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #8a8a8a;
+}
+
+.id {
+  color: #505962;
+  font-size: 18px;
+}
+
 .active .titles,
-.active .type {
+.active .type,
+.active .dates,
+.active .id {
   color: #ffffff;
 }
 </style>
