@@ -61,6 +61,10 @@ export default {
   background-color: #ffad00;
 }
 
+.button:hover {
+  cursor: pointer;
+}
+
 .id {
   position: relative;
   top: 10px;
