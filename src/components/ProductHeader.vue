@@ -1,11 +1,17 @@
 <template>
   <div :class="$style.header">
-    <button :class="$style.button">
+    <button
+      :class="$style.button"
+      v-if="!newPurchase"
+      v-on:click="togglePurchase">
       <i class="material-icons">add</i>
     </button>
     <span :class="$style.id">Product ID {{ id }}</span>
-    <div :class="$style.menu">
+    <div v-if="!newPurchase" :class="$style.menu">
       <span v-for="item in menu">{{ item }}</span>
+    </div>
+    <div v-if="newPurchase" :class="$style.menu">
+      Add new purchase
     </div>
   </div>
 </template>
@@ -13,7 +19,11 @@
 <script>
 export default {
   name: 'ProductHeader',
-  props: ['id'],
+  props: [
+    'id',
+    'togglePurchase',
+    'newPurchase'
+  ],
   data() {
     return {
       menu: [

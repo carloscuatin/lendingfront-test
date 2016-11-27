@@ -1,8 +1,8 @@
 <template>
   <router-link
-    :to="{ name: 'product', params: { id: product.id }}"
     :class="$style.container"
-    :active-class="$style.active">
+    :active-class="$style.active"
+    :to="{ name: 'product', params: { id: product.id }}">
     <div :class="$style.line">
       <div :class="$style.titles">
         Product ID

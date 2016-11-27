@@ -1,11 +1,17 @@
 <template>
   <div :class="$style.container">
-    <ProductHeader :id="id"/>
+    <ProductHeader
+      :id="id"
+      :togglePurchase="togglePurchase"
+      :newPurchase="newPurchase"/>
     <div :class="$style.detail">
       <div :class="$style.empty" v-if="empty">
         Add a new purchase clicking the
         <i :class="$style.icon" class="material-icons">add</i>
         button
+      </div>
+      <div v-if="newPurchase">
+        New Purchase
       </div>
     </div>
     <ProductFooter/>
@@ -25,7 +31,8 @@ export default {
   data() {
     return {
       id: null,
-      empty: true
+      empty: true,
+      newPurchase: false
     };
   },
   created() {
@@ -38,6 +45,11 @@ export default {
     fetchData() {
       // const resource = this.$resource('someItem{/id}');
       this.id = this.$route.params.id;
+    },
+    togglePurchase() {
+      this.empty = false;
+      this.newPurchase = true;
+      this.$root.$emit('new-purchase', true);
     }
   }
 };

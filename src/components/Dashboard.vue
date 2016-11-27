@@ -1,9 +1,10 @@
 <template>
   <div :class="$style.container">
     <div :class="$style.sidebar">
+      <div v-if="newPurchase" :class="$style.active"></div>
       <span :class="$style.title">Select a product to syndicate</span>
       <div :class="$style.products">
-        <Product v-for="product in products" :product="product"></Product>
+        <Product v-for="product in products" :product="product"/>
       </div>
     </div>
     <div :class="$style.product">
@@ -17,8 +18,12 @@ import Product from './Product';
 
 export default {
   name: 'Dashboard',
+  components: {
+    Product
+  },
   data() {
     return {
+      newPurchase: false,
       products: [
         {
           id: 2456,
@@ -38,8 +43,10 @@ export default {
       ]
     };
   },
-  components: {
-    Product
+  mounted() {
+    this.$root.$on('new-purchase', (state) => {
+      this.newPurchase = state;
+    });
   }
 };
 </script>
@@ -56,6 +63,7 @@ export default {
 
 .sidebar {
   width: 31%;
+  position: relative;
   background-color: #fafafa;
 }
 
@@ -76,8 +84,16 @@ export default {
   padding-bottom: 40px;
 }
 
+.active {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
 .product {
   width: 69%;
+  z-index: 1;
   box-shadow: -8px 0px 10px -3px rgba(0,0,0,0.2);
 }
 </style>

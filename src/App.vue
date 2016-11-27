@@ -28,6 +28,10 @@ export default {
 <style>
 @import '~normalize.css/normalize.css';
 
+* {
+  outline: 0;
+}
+
 #app {
   font-family: 'Maven Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
