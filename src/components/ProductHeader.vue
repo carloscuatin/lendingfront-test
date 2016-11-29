@@ -10,7 +10,7 @@
     <div v-if="!newPurchase" :class="$style.menu">
       <span v-for="item in menu">{{ item }}</span>
     </div>
-    <div v-if="newPurchase" :class="$style.menu">
+    <div v-else :class="$style.menu">
       Add new purchase
     </div>
   </div>

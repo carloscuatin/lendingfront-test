@@ -6,11 +6,7 @@
 
 <script>
 export default {
-  name: 'ProductFooter',
-  data() {
-    return {
-    };
-  }
+  name: 'ProductFooter'
 };
 </script>
 

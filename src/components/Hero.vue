@@ -1,17 +1,12 @@
 <template>
   <h1 :class="$style.title">
-    {{ text }}
+    Advances for syndication
   </h1>
 </template>
 
 <script>
 export default {
-  name: 'Hero',
-  data() {
-    return {
-      text: 'Advances for syndication'
-    };
-  }
+  name: 'Hero'
 };
 </script>
 
