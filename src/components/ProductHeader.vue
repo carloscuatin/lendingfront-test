@@ -28,9 +28,7 @@ export default {
     return {
       menu: [
         'Investor name',
-        'Left amount',
-        '% Amount',
-        'Sell',
+        'Sold',
         '% Purchased'
       ]
     };

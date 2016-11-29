@@ -2,7 +2,7 @@
   <router-link
     :class="$style.container"
     :active-class="$style.active"
-    :to="{ name: 'product', params: { id: product.product_id }}">
+    :to="{ name: 'product', params: { id: product.id }}">
     <div :class="$style.line">
       <div :class="$style.titles">
         Product ID

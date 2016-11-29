@@ -10,6 +10,11 @@
         <i :class="$style.icon" class="material-icons">add</i>
         button
       </div>
+      <div v-else>
+        <div v-for="item in purchases">
+          {{ item.investor_name }}
+        </div>
+      </div>
       <div v-if="newPurchase">
         New Purchase
       </div>
@@ -21,6 +26,7 @@
 <script>
 import ProductHeader from './ProductHeader';
 import ProductFooter from './ProductFooter';
+import { httpGet } from '../utils/fetch';
 
 export default {
   name: 'ProducDetail',
@@ -32,7 +38,9 @@ export default {
     return {
       id: null,
       empty: true,
-      newPurchase: false
+      newPurchase: false,
+      purchases: null,
+      error: null
     };
   },
   created() {
@@ -43,8 +51,14 @@ export default {
   },
   methods: {
     fetchData() {
-      // const resource = this.$resource('someItem{/id}');
-      this.id = this.$route.params.id;
+      httpGet(`/purchases/?product__id=${this.$route.params.id}`)
+        .then((response) => {
+          this.empty = false;
+          this.purchases = response.results;
+        })
+        .catch((error) => {
+          this.error = error;
+        });
     },
     togglePurchase() {
       this.empty = false;
