@@ -15,6 +15,7 @@
 
 <script>
 import Product from './Product';
+import { httpGet } from '../utils/fetch';
 
 export default {
   name: 'Dashboard',
@@ -24,29 +25,26 @@ export default {
   data() {
     return {
       newPurchase: false,
-      products: [
-        {
-          id: 2456,
-          price: '$2.700.800',
-          date: '07/07/2016'
-        },
-        {
-          id: 2457,
-          price: '$2.700.800',
-          date: '07/07/2016'
-        },
-        {
-          id: 2458,
-          price: '$2.700.800',
-          date: '07/07/2016'
-        }
-      ]
+      products: null,
+      error: null
     };
   },
-  mounted() {
+  created() {
+    this.fetchData();
     this.$root.$on('new-purchase', (state) => {
       this.newPurchase = state;
     });
+  },
+  methods: {
+    fetchData() {
+      httpGet('/products/')
+        .then((response) => {
+          this.products = response.results;
+        })
+        .catch((error) => {
+          this.error = error;
+        });
+    }
   }
 };
 </script>

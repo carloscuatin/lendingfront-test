@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import VueResource from 'vue-resource';
 import App from './App';
 import Home from './components/Home';
 import ProductDetail from './components/ProductDetail';
 
-Vue.use(VueRouter, VueResource);
+Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: 'history',

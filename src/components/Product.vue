@@ -2,18 +2,18 @@
   <router-link
     :class="$style.container"
     :active-class="$style.active"
-    :to="{ name: 'product', params: { id: product.id }}">
+    :to="{ name: 'product', params: { id: product.product_id }}">
     <div :class="$style.line">
       <div :class="$style.titles">
         Product ID
         <span :class="$style.type">Advance</span>
       </div>
       <div :class="$style.dates">
-        <span :class="$style.id">{{ product.id }}</span>
+        <span :class="$style.id">{{ product.product_id }}</span>
         {{ product.date }}
       </div>
       <div :class="$style.price">
-        {{ product.price }}
+        ${{ product.amount }}
       </div>
     </div>
   </router-link>
