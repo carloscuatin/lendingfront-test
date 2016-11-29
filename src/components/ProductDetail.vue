@@ -5,7 +5,7 @@
       :togglePurchase="togglePurchase"
       :newPurchase="newPurchase"/>
     <div :class="$style.detail">
-      <div :class="$style.empty" v-if="empty">
+      <div :class="$style.empty" v-if="purchases.length === 0">
         Add a new purchase clicking the
         <i :class="$style.icon" class="material-icons">add</i>
         button
@@ -37,9 +37,8 @@ export default {
   data() {
     return {
       id: null,
-      empty: true,
       newPurchase: false,
-      purchases: null,
+      purchases: [],
       error: null
     };
   },
@@ -53,7 +52,6 @@ export default {
     fetchData() {
       httpGet(`/purchases/?product__id=${this.$route.params.id}`)
         .then((response) => {
-          this.empty = false;
           this.purchases = response.results;
         })
         .catch((error) => {
@@ -61,7 +59,6 @@ export default {
         });
     },
     togglePurchase() {
-      this.empty = false;
       this.newPurchase = true;
       this.$root.$emit('new-purchase', true);
     }
