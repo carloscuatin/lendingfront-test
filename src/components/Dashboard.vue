@@ -14,8 +14,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Product from './Product';
-import { httpGet } from '../utils/fetch';
 
 export default {
   name: 'Dashboard',
@@ -24,28 +24,18 @@ export default {
   },
   data() {
     return {
-      newPurchase: false,
-      products: null,
-      error: null
+      newPurchase: false
     };
   },
   created() {
-    this.fetchData();
+    this.$store.dispatch('GET_PRODUCTS');
     this.$root.$on('new-purchase', (state) => {
       this.newPurchase = state;
     });
   },
-  methods: {
-    fetchData() {
-      httpGet('/products/')
-        .then((response) => {
-          this.products = response.results;
-        })
-        .catch((error) => {
-          this.error = error;
-        });
-    }
-  }
+  computed: mapState({
+    products: state => state.products
+  })
 };
 </script>
 

@@ -24,9 +24,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import ProductHeader from './ProductHeader';
 import ProductFooter from './ProductFooter';
-import { httpGet } from '../utils/fetch';
 
 export default {
   name: 'ProducDetail',
@@ -38,25 +38,21 @@ export default {
     return {
       id: null,
       newPurchase: false,
-      purchases: [],
       error: null
     };
   },
   created() {
     this.fetchData();
   },
+  computed: mapState({
+    purchases: state => state.purchases
+  }),
   watch: {
     $route: 'fetchData'
   },
   methods: {
     fetchData() {
-      httpGet(`/purchases/?product__id=${this.$route.params.id}`)
-        .then((response) => {
-          this.purchases = response.results;
-        })
-        .catch((error) => {
-          this.error = error;
-        });
+      this.$store.dispatch('GET_PURCHASES', this.$route.params.id);
     },
     togglePurchase() {
       this.newPurchase = true;
