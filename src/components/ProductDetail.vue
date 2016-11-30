@@ -5,20 +5,20 @@
       :togglePurchase="togglePurchase"
       :newPurchase="newPurchase"/>
     <div :class="$style.detail">
-      <div :class="$style.empty" v-if="purchases.length === 0">
+      <div :class="$style.empty" v-if="purchases.length === 0 && !newPurchase">
         Add a new purchase clicking the
         <i :class="$style.icon" class="material-icons">add</i>
         button
       </div>
-      <div v-else-if="newPurchase">
-        New Purchase
-      </div>
+      <NewPurchase
+        v-else-if="newPurchase"
+        :cancelNewPurchase="cancelNewPurchase" />
       <Purchase
         v-else
         v-for="purchase in purchases"
         :producActivate="producActivate"
         :purchase="purchase"
-        :addPurchase="addPurchase"
+        :editPurchase="editPurchase"
         :clearPurchase="clearPurchase"/>
     </div>
     <ProductFooter/>
@@ -30,19 +30,20 @@ import { mapState } from 'vuex';
 import ProductHeader from './ProductHeader';
 import ProductFooter from './ProductFooter';
 import Purchase from './Purchase';
+import NewPurchase from './NewPurchase';
 
 export default {
   name: 'ProducDetail',
   components: {
     ProductHeader,
     ProductFooter,
-    Purchase
+    Purchase,
+    NewPurchase
   },
   data() {
     return {
       id: null,
-      newPurchase: false,
-      error: null
+      newPurchase: false
     };
   },
   created() {
@@ -57,6 +58,7 @@ export default {
   },
   methods: {
     fetchData() {
+      this.$store.dispatch('GET_INVESTORS');
       this.$store.dispatch('GET_PURCHASES', this.$route.params.id);
     },
     togglePurchase() {
@@ -67,8 +69,16 @@ export default {
       console.log(id);
       // this.$store.dispatch('ADD_PURCHASE', id);
     },
+    editPurchase(id) {
+      console.log(id);
+      // this.$store.dispatch('ADD_PURCHASE', id);
+    },
     clearPurchase(id) {
       this.$store.dispatch('DELETE_PURCHASE', id);
+    },
+    cancelNewPurchase() {
+      this.newPurchase = false;
+      this.$root.$emit('new-purchase', false);
     }
   }
 };

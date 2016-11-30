@@ -6,7 +6,7 @@
       <span>{{ purchase.percentage }}</span>
     </div>
     <div :class="$style.functions" v-if="activeEdit">
-      <div :class="$style.edit" @click="addPurchase(purchase.id)">
+      <div :class="$style.edit" @click="editPurchase(purchase.id)">
         <i class="material-icons">edit</i>
       </div>
       <div :class="$style.clear" @click="clearPurchase(purchase.id)">
@@ -19,7 +19,7 @@
 <script>
 export default {
   name: 'Purchase',
-  props: ['purchase', 'clearPurchase'],
+  props: ['purchase', 'editPurchase', 'clearPurchase'],
   data() {
     return {
       activeEdit: true
@@ -69,8 +69,9 @@ export default {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  padding: 3px;
+  padding: 5px;
   margin: 0 5px;
+  border: 1px solid #00a3ad;
 }
 
 .edit:hover,
@@ -85,7 +86,6 @@ export default {
 
 .clear {
   color: #00a3ad;
-  border: 1px solid #00a3ad;
 }
 
 .edit i,

@@ -8,6 +8,7 @@ Vue.use(Vuex);
 const initialState = {
   products: [],
   purchases: [],
+  investors: [],
   productActivate: {}
 };
 
@@ -26,6 +27,9 @@ const mutations = {
   },
   SET_PURCHASES(state, purchases) {
     state.purchases = purchases;
+  },
+  SET_INVESTORS(state, investors) {
+    state.investors = investors;
   },
   ADD_PURCHASE(state) {
     const newNote = {
@@ -57,6 +61,15 @@ const actions = {
       .then((response) => {
         commit('SET_PURCHASES', response.results);
         commit('SET_PRODUCT_ACTIVATE', productId);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  },
+  GET_INVESTORS({ commit }) {
+    httpGet('/investors/')
+      .then((response) => {
+        commit('SET_INVESTORS', response.results);
       })
       .catch((error) => {
         console.error(error);
