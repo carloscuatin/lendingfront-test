@@ -2,22 +2,21 @@
   <div :class="$style.container">
     <div :class="$style.detail">
       <div :class="$style.containerInput">
-        <select :class="$style.select">
-          <option value="" disabled selected>Select investor</option>
-          <option v-for="investor in investors" :value="investor.id">
+        <select :class="$style.select" v-model="newInvestor">
+          <option v-for="investor in investors" :value="investor.id" :disabled="investor.disabled">
             {{ investor.name }}
           </option>
         </select>
       </div>
       <div :class="$style.containerInput">
-        <input :class="$style.input" type="text" placeholder="Amount to sell">
+        <input :class="$style.input" v-model="amountSell" type="text" placeholder="Amount to sell">
       </div>
     </div>
     <div :class="$style.functions">
-      <div :class="$style.save" @click="addPurchase(purchase.id)">
+      <div :class="$style.save" @click="addNewPurchase">
         <i class="material-icons">save</i>
       </div>
-      <div :class="$style.clear" @click="cancelNewPurchase()">
+      <div :class="$style.clear" @click="cancelNewPurchase">
         <i class="material-icons">clear</i>
       </div>
     </div>
@@ -30,9 +29,26 @@ import { mapState } from 'vuex';
 export default {
   name: 'NewPurchase',
   props: ['investors', 'cancelNewPurchase'],
+  data() {
+    return {
+      newInvestor: 0,
+      amountSell: null
+    };
+  },
   computed: mapState({
-    investors: state => state.investors
-  })
+    investors: state => state.investors,
+    productActivate: state => state.productActivate
+  }),
+  methods: {
+    addNewPurchase() {
+      const data = {
+        amount_to_sell: this.amountSell,
+        investor: this.newInvestor,
+        product: this.productActivate.id
+      };
+      this.$store.dispatch('ADD_PURCHASE', data);
+    }
+  }
 };
 </script>
 

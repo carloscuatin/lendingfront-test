@@ -1,14 +1,20 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createLogger from 'vuex/dist/logger';
-import { httpGet, httpDelete } from '../utils/fetch';
+import { httpGet, httpPost, httpDelete } from '../utils/fetch';
 
 Vue.use(Vuex);
 
 const initialState = {
   products: [],
   purchases: [],
-  investors: [],
+  investors: [
+    {
+      id: 0,
+      name: 'Select Investor',
+      disabled: true
+    }
+  ],
   productActivate: {}
 };
 
@@ -29,13 +35,9 @@ const mutations = {
     state.purchases = purchases;
   },
   SET_INVESTORS(state, investors) {
-    state.investors = investors;
+    state.investors = [...state.investors, ...investors];
   },
-  ADD_PURCHASE(state) {
-    const newNote = {
-      text: 'New note',
-      favorite: false
-    };
+  ADD_PURCHASE(state, newNote) {
     state.notes.push(newNote);
   },
   EDIT_PURCHASE(state, text) {
@@ -73,6 +75,12 @@ const actions = {
       })
       .catch((error) => {
         console.error(error);
+      });
+  },
+  ADD_PURCHASE({ commit }, data) {
+    httpPost('/purchases/', data)
+      .then((response) => {
+        console.log(response, Vue);
       });
   },
   DELETE_PURCHASE({ commit }, productId) {

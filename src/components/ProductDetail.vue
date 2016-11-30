@@ -65,10 +65,6 @@ export default {
       this.newPurchase = true;
       this.$root.$emit('new-purchase', true);
     },
-    addPurchase(id) {
-      console.log(id);
-      // this.$store.dispatch('ADD_PURCHASE', id);
-    },
     editPurchase(id) {
       console.log(id);
       // this.$store.dispatch('ADD_PURCHASE', id);
