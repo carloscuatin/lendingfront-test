@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createLogger from 'vuex/dist/logger';
-import { httpGet, httpPost, httpDelete } from '../utils/fetch';
+import { httpGet, httpPost, httpPut, httpDelete } from '../utils/fetch';
 
 Vue.use(Vuex);
 
@@ -10,7 +10,9 @@ const initialState = {
   purchases: [],
   investors: [],
   productActivate: {},
-  newPurchase: false
+  newPurchase: false,
+  editPurchase: false,
+  purchaseActivate: {}
 };
 
 const mutations = {
@@ -29,6 +31,14 @@ const mutations = {
   SET_PURCHASES(state, purchases) {
     state.purchases = purchases;
   },
+  SET_PURCHASE_ACTIVATE(state, purchaseId) {
+    state.purchases.filter((purchase) => {
+      if (purchase.id === purchaseId) {
+        state.purchaseActivate = purchase;
+      }
+      return false;
+    });
+  },
   SET_INVESTORS(state, investors) {
     state.investors = investors;
   },
@@ -43,6 +53,9 @@ const mutations = {
   },
   SET_NEW_PURCHASE(state, newState) {
     state.newPurchase = newState;
+  },
+  SET_EDIT_PURCHASE(state, newState) {
+    state.editPurchase = newState;
   }
 };
 
@@ -85,10 +98,20 @@ const actions = {
         console.error(error);
       });
   },
-  DELETE_PURCHASE({ commit }, productId) {
-    httpDelete('/purchases/', { productId })
+  EDIT_PURCHASE({ commit }, purchaseId) {
+    commit('SET_PURCHASE_ACTIVATE', purchaseId);
+  },
+  EDIT_SAVE_PURCHASE({ commit }, data) {
+    const { productId, dataPurchase } = data;
+    httpPut(`/purchases/${productId}/`, dataPurchase)
       .then((response) => {
-        commit('DELETE_PURCHASE', response.id);
+        console.log(response);
+      });
+  },
+  DELETE_PURCHASE({ commit }, productId) {
+    httpDelete(`/purchases/${productId}/`)
+      .then(() => {
+        commit('DELETE_PURCHASE', productId);
       })
       .catch((error) => {
         console.error(error);
@@ -96,6 +119,9 @@ const actions = {
   },
   SET_NEW_PURCHASE({ commit }, state) {
     commit('SET_NEW_PURCHASE', state);
+  },
+  SET_EDIT_PURCHASE({ commit }, state) {
+    commit('SET_EDIT_PURCHASE', state);
   }
 };
 

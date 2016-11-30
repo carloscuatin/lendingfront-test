@@ -49,6 +49,16 @@ export const httpPost = (url, data) => {
   .then(checkStatus);
 };
 
+export const httpPut = (url, data) => {
+  const bodyData = JSON.stringify(data);
+  return fetch(`${env.BASE_URL}${url}`, {
+    method: 'PUT',
+    headers: defaultHeaders,
+    body: bodyData
+  })
+  .then(checkStatus);
+};
+
 export const httpDelete = (url, data) => {
   const bodyData = JSON.stringify(data);
   return fetch(`${env.BASE_URL}${url}`, {

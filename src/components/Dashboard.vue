@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <div :class="$style.sidebar">
-      <div v-if="newPurchase" :class="$style.active"></div>
+      <div v-if="newPurchase || editPurchase" :class="$style.active"></div>
       <span :class="$style.title">Select a product to syndicate</span>
       <div :class="$style.products">
         <Product v-for="product in products" :product="product"/>
@@ -27,7 +27,8 @@ export default {
   },
   computed: mapState({
     products: state => state.products,
-    newPurchase: state => state.newPurchase
+    newPurchase: state => state.newPurchase,
+    editPurchase: state => state.editPurchase
   })
 };
 </script>

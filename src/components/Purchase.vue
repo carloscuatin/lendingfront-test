@@ -3,10 +3,9 @@
     <div :class="$style.detail">
       <span>{{ purchase.investor_name }}</span>
       <span>${{ purchase.amount_to_sell }}</span>
-      <span>{{ purchase.percentage }}</span>
     </div>
     <div :class="$style.functions" v-if="activeEdit">
-      <div :class="$style.edit" @click="editPurchase(purchase.id)">
+      <div :class="$style.edit" @click="handleEditPurchase(purchase.id)">
         <i class="material-icons">edit</i>
       </div>
       <div :class="$style.clear" @click="clearPurchase(purchase.id)">
@@ -19,7 +18,7 @@
 <script>
 export default {
   name: 'Purchase',
-  props: ['purchase', 'editPurchase', 'clearPurchase'],
+  props: ['purchase', 'handleEditPurchase', 'clearPurchase'],
   data() {
     return {
       activeEdit: true

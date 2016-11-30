@@ -13,15 +13,18 @@
       <NewPurchase
         v-else-if="newPurchase"
         :cancelNewPurchase="cancelNewPurchase" />
+      <EditPurchase
+        v-else-if="editPurchase"
+        :cancelEditPurchase="cancelEditPurchase" />
       <Purchase
         v-else
         v-for="purchase in purchases"
         :producActivate="producActivate"
         :purchase="purchase"
-        :editPurchase="editPurchase"
+        :handleEditPurchase="handleEditPurchase"
         :clearPurchase="clearPurchase"/>
     </div>
-    <ProductFooter/>
+    <ProductFooter :productActivate="productActivate" />
   </div>
 </template>
 
@@ -31,6 +34,7 @@ import ProductHeader from './ProductHeader';
 import ProductFooter from './ProductFooter';
 import Purchase from './Purchase';
 import NewPurchase from './NewPurchase';
+import EditPurchase from './EditPurchase';
 
 export default {
   name: 'ProducDetail',
@@ -38,7 +42,8 @@ export default {
     ProductHeader,
     ProductFooter,
     Purchase,
-    NewPurchase
+    NewPurchase,
+    EditPurchase
   },
   created() {
     this.fetchData();
@@ -46,7 +51,8 @@ export default {
   computed: mapState({
     purchases: state => state.purchases,
     productActivate: state => state.productActivate,
-    newPurchase: state => state.newPurchase
+    newPurchase: state => state.newPurchase,
+    editPurchase: state => state.editPurchase
   }),
   watch: {
     $route: 'fetchData'
@@ -59,15 +65,18 @@ export default {
     togglePurchase() {
       this.$store.dispatch('SET_NEW_PURCHASE', true);
     },
-    editPurchase(id) {
-      console.log(id);
-      // this.$store.dispatch('EDIT_PURCHASE', id);
+    handleEditPurchase(id) {
+      this.$store.dispatch('EDIT_PURCHASE', id);
+      this.$store.dispatch('SET_EDIT_PURCHASE', true);
     },
     clearPurchase(id) {
       this.$store.dispatch('DELETE_PURCHASE', id);
     },
     cancelNewPurchase() {
       this.$store.dispatch('SET_NEW_PURCHASE', false);
+    },
+    cancelEditPurchase() {
+      this.$store.dispatch('SET_EDIT_PURCHASE', false);
     }
   }
 };

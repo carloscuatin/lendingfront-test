@@ -1,12 +1,13 @@
 <template>
   <div :class="$style.footer">
-    Reamaining amount
+    Reamaining amount ${{ productActivate.amount_discount }} of ${{ productActivate.amount }}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ProductFooter'
+  name: 'ProductFooter',
+  props: ['productActivate']
 };
 </script>
 
