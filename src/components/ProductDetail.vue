@@ -68,8 +68,7 @@ export default {
       // this.$store.dispatch('ADD_PURCHASE', id);
     },
     clearPurchase(id) {
-      console.log(id);
-      // this.$store.dispatch('DELETE_PURCHASE', id);
+      this.$store.dispatch('DELETE_PURCHASE', id);
     }
   }
 };

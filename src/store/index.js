@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createLogger from 'vuex/dist/logger';
-import { httpGet } from '../utils/fetch';
+import { httpGet, httpDelete } from '../utils/fetch';
 
 Vue.use(Vuex);
 
@@ -37,9 +37,8 @@ const mutations = {
   EDIT_PURCHASE(state, text) {
     state.activeNote.text = text;
   },
-  DELETE_PURCHASE(state) {
-    state.notes.$remove(state.activeNote);
-    state.activeNote = state.notes[0];
+  DELETE_PURCHASE(state, purchaseId) {
+    state.purchases = state.purchases.filter(purchase => purchase.id !== purchaseId);
   }
 };
 
@@ -58,6 +57,15 @@ const actions = {
       .then((response) => {
         commit('SET_PURCHASES', response.results);
         commit('SET_PRODUCT_ACTIVATE', productId);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  },
+  DELETE_PURCHASE({ commit }, productId) {
+    httpDelete('/purchases/', { productId })
+      .then((response) => {
+        commit('DELETE_PURCHASE', response.id);
       })
       .catch((error) => {
         console.error(error);
