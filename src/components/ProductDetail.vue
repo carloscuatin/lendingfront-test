@@ -40,18 +40,13 @@ export default {
     Purchase,
     NewPurchase
   },
-  data() {
-    return {
-      id: null,
-      newPurchase: false
-    };
-  },
   created() {
     this.fetchData();
   },
   computed: mapState({
     purchases: state => state.purchases,
-    productActivate: state => state.productActivate
+    productActivate: state => state.productActivate,
+    newPurchase: state => state.newPurchase
   }),
   watch: {
     $route: 'fetchData'
@@ -62,19 +57,17 @@ export default {
       this.$store.dispatch('GET_PURCHASES', this.$route.params.id);
     },
     togglePurchase() {
-      this.newPurchase = true;
-      this.$root.$emit('new-purchase', true);
+      this.$store.dispatch('SET_NEW_PURCHASE', true);
     },
     editPurchase(id) {
       console.log(id);
-      // this.$store.dispatch('ADD_PURCHASE', id);
+      // this.$store.dispatch('EDIT_PURCHASE', id);
     },
     clearPurchase(id) {
       this.$store.dispatch('DELETE_PURCHASE', id);
     },
     cancelNewPurchase() {
-      this.newPurchase = false;
-      this.$root.$emit('new-purchase', false);
+      this.$store.dispatch('SET_NEW_PURCHASE', false);
     }
   }
 };

@@ -8,14 +8,9 @@ Vue.use(Vuex);
 const initialState = {
   products: [],
   purchases: [],
-  investors: [
-    {
-      id: 0,
-      name: 'Select Investor',
-      disabled: true
-    }
-  ],
-  productActivate: {}
+  investors: [],
+  productActivate: {},
+  newPurchase: false
 };
 
 const mutations = {
@@ -35,16 +30,19 @@ const mutations = {
     state.purchases = purchases;
   },
   SET_INVESTORS(state, investors) {
-    state.investors = [...state.investors, ...investors];
+    state.investors = investors;
   },
-  ADD_PURCHASE(state, newNote) {
-    state.notes.push(newNote);
+  ADD_PURCHASE(state, newPurchase) {
+    state.purchases.push(newPurchase);
   },
   EDIT_PURCHASE(state, text) {
     state.activeNote.text = text;
   },
   DELETE_PURCHASE(state, purchaseId) {
     state.purchases = state.purchases.filter(purchase => purchase.id !== purchaseId);
+  },
+  SET_NEW_PURCHASE(state, newState) {
+    state.newPurchase = newState;
   }
 };
 
@@ -77,10 +75,14 @@ const actions = {
         console.error(error);
       });
   },
-  ADD_PURCHASE({ commit }, data) {
+  ADD_PURCHASE({ commit, dispatch }, data) {
     httpPost('/purchases/', data)
       .then((response) => {
-        console.log(response, Vue);
+        commit('ADD_PURCHASE', response);
+        dispatch('SET_NEW_PURCHASE', false);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   },
   DELETE_PURCHASE({ commit }, productId) {
@@ -91,6 +93,9 @@ const actions = {
       .catch((error) => {
         console.error(error);
       });
+  },
+  SET_NEW_PURCHASE({ commit }, state) {
+    commit('SET_NEW_PURCHASE', state);
   }
 };
 

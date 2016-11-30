@@ -22,19 +22,12 @@ export default {
   components: {
     Product
   },
-  data() {
-    return {
-      newPurchase: false
-    };
-  },
   created() {
     this.$store.dispatch('GET_PRODUCTS');
-    this.$root.$on('new-purchase', (state) => {
-      this.newPurchase = state;
-    });
   },
   computed: mapState({
-    products: state => state.products
+    products: state => state.products,
+    newPurchase: state => state.newPurchase
   })
 };
 </script>

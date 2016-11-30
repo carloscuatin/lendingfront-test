@@ -3,6 +3,7 @@
     <div :class="$style.detail">
       <div :class="$style.containerInput">
         <select :class="$style.select" v-model="newInvestor">
+          <option value="0">Select investor</option>
           <option v-for="investor in investors" :value="investor.id" :disabled="investor.disabled">
             {{ investor.name }}
           </option>
