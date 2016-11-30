@@ -59,7 +59,7 @@ export default {
   display: flex;
   align-items: center;
   height: 35px;
-  padding: 0 20px;
+  padding: 0px 20px;
   font-size: 14px;
   color: #9e9e9e;
   letter-spacing: -0.5px;

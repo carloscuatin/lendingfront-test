@@ -7,12 +7,22 @@ Vue.use(Vuex);
 
 const initialState = {
   products: [],
-  purchases: []
+  purchases: [],
+  productActivate: {}
 };
 
 const mutations = {
   SET_PRODUCTS(state, products) {
     state.products = products;
+  },
+  SET_PRODUCT_ACTIVATE(state, productId) {
+    state.products.filter((product) => {
+      if (product.id === parseInt(productId, 10)) {
+        state.productActivate = product;
+      }
+
+      return false;
+    });
   },
   SET_PURCHASES(state, purchases) {
     state.purchases = purchases;
@@ -47,6 +57,10 @@ const actions = {
     httpGet(`/purchases/?product__id=${productId}`)
       .then((response) => {
         commit('SET_PURCHASES', response.results);
+        commit('SET_PRODUCT_ACTIVATE', productId);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 };

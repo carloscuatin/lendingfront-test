@@ -3,7 +3,7 @@
     <button
       :class="$style.button"
       v-if="!newPurchase"
-      v-on:click="togglePurchase">
+      @click="togglePurchase">
       <i class="material-icons">add</i>
     </button>
     <span :class="$style.id">Product ID {{ id }}</span>

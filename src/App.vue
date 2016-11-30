@@ -47,6 +47,6 @@ export default {
 
 .center {
   width: 85%;
-  margin: 0 auto;
+  margin: 0px auto;
 }
 </style>

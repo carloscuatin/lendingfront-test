@@ -16,7 +16,7 @@ export default {
 .navbar {
   position: fixed;
   width: 100%;
-  padding: 10px 0;
+  padding: 10px 0px;
   text-align: center;
   background-color: #2e2e2e;
   box-shadow: inset 0 1px #fff, 0 1px 3px rgba(34,25,25,0.4);

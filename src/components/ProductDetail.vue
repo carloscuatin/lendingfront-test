@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <ProductHeader
-      :id="id"
+      :id="productActivate.product_id"
       :togglePurchase="togglePurchase"
       :newPurchase="newPurchase"/>
     <div :class="$style.detail">
@@ -10,14 +10,16 @@
         <i :class="$style.icon" class="material-icons">add</i>
         button
       </div>
-      <div v-else>
-        <div v-for="item in purchases">
-          {{ item.investor_name }}
-        </div>
-      </div>
-      <div v-if="newPurchase">
+      <div v-else-if="newPurchase">
         New Purchase
       </div>
+      <Purchase
+        v-else
+        v-for="purchase in purchases"
+        :producActivate="producActivate"
+        :purchase="purchase"
+        :addPurchase="addPurchase"
+        :clearPurchase="clearPurchase"/>
     </div>
     <ProductFooter/>
   </div>
@@ -27,12 +29,14 @@
 import { mapState } from 'vuex';
 import ProductHeader from './ProductHeader';
 import ProductFooter from './ProductFooter';
+import Purchase from './Purchase';
 
 export default {
   name: 'ProducDetail',
   components: {
     ProductHeader,
-    ProductFooter
+    ProductFooter,
+    Purchase
   },
   data() {
     return {
@@ -45,7 +49,8 @@ export default {
     this.fetchData();
   },
   computed: mapState({
-    purchases: state => state.purchases
+    purchases: state => state.purchases,
+    productActivate: state => state.productActivate
   }),
   watch: {
     $route: 'fetchData'
@@ -57,6 +62,14 @@ export default {
     togglePurchase() {
       this.newPurchase = true;
       this.$root.$emit('new-purchase', true);
+    },
+    addPurchase(id) {
+      console.log(id);
+      // this.$store.dispatch('ADD_PURCHASE', id);
+    },
+    clearPurchase(id) {
+      console.log(id);
+      // this.$store.dispatch('DELETE_PURCHASE', id);
     }
   }
 };
@@ -71,7 +84,7 @@ export default {
 }
 
 .detail {
-  padding: 0 20px;
+  padding: 0px 20px;
   height: 50%;
 }
 

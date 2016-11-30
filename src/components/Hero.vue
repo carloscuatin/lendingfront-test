@@ -13,7 +13,7 @@ export default {
 <style module>
 .title {
   color: #ffffff;
-  margin: 0;
+  margin: 0px;
   padding-top: 25px;
   font-weight: lighter;
 }
