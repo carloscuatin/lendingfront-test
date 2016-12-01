@@ -3,7 +3,7 @@
     <div :class="$style.detail">
       <span>{{ purchase.investor_name }}</span>
       <span>${{ purchase.amount_to_sell }}</span>
-      <span>{{ percentage }}%</span>
+      <ProgressBar :percentage="percentage" />
     </div>
     <div :class="$style.functions" v-if="activeEdit">
       <div :class="$style.edit" @click="handleEditPurchase(purchase.id)">
@@ -17,9 +17,12 @@
 </template>
 
 <script>
+import ProgressBar from './ProgressBar';
+
 export default {
   name: 'Purchase',
   props: ['purchase', 'handleEditPurchase', 'clearPurchase'],
+  components: { ProgressBar },
   data() {
     return {
       activeEdit: true,
@@ -48,6 +51,7 @@ export default {
   margin: 0px -20px;
   display: flex;
   border-bottom: 1px solid #ededed;
+  color: #969696;
 }
 
 .detail {
