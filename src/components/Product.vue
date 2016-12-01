@@ -10,7 +10,7 @@
       </div>
       <div :class="$style.dates">
         <span :class="$style.id">{{ product.product_id }}</span>
-        {{ product.date }}
+        {{ formatDate }}
       </div>
       <div :class="$style.price">
         ${{ product.amount }}
@@ -22,7 +22,13 @@
 <script>
 export default {
   name: 'Product',
-  props: ['product']
+  props: ['product'],
+  computed: {
+    formatDate() {
+      const newDate = new Date(this.product.date);
+      return newDate.toLocaleDateString();
+    }
+  }
 };
 </script>
 

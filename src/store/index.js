@@ -88,7 +88,7 @@ const actions = {
         console.error(error);
       });
   },
-  ADD_PURCHASE({ commit, dispatch }, data) {
+  ADD_PURCHASE({ commit, dispatch, state }, data) {
     httpPost('/purchases/', data)
       .then((response) => {
         commit('ADD_PURCHASE', response);

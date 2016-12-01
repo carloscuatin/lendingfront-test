@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.footer">
-    Reamaining amount ${{ productActivate.amount_discount }} of ${{ productActivate.amount }}
+    Remaining amount ${{ productActivate.amount_discount }} of ${{ productActivate.amount }}
   </div>
 </template>
 
@@ -13,6 +13,8 @@ export default {
 
 <style module>
 .footer {
+  display: flex;
+  align-items: center;
   height: 80px;
   color: #ffffff;
   padding: 10px 40px;
