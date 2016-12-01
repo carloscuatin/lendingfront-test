@@ -3,6 +3,7 @@
     <div :class="$style.detail">
       <span>{{ purchase.investor_name }}</span>
       <span>${{ purchase.amount_to_sell }}</span>
+      <span>{{ purchase.percentage }}%</span>
     </div>
     <div :class="$style.functions" v-if="activeEdit">
       <div :class="$style.edit" @click="handleEditPurchase(purchase.id)">
@@ -21,7 +22,8 @@ export default {
   props: ['purchase', 'handleEditPurchase', 'clearPurchase'],
   data() {
     return {
-      activeEdit: true
+      activeEdit: true,
+      layer: `M 53 53 m -50, 53 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -${this.purchase.percentage},0`
     };
   },
   methods: {

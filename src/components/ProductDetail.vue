@@ -92,7 +92,7 @@ export default {
 
 .detail {
   padding: 0px 20px;
-  height: 50%;
+  height: 100%;
 }
 
 .empty {

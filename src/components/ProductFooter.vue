@@ -13,7 +13,7 @@ export default {
 
 <style module>
 .footer {
-  height: 40px;
+  height: 80px;
   color: #ffffff;
   padding: 10px 40px;
   background-color: #00a3ad;
