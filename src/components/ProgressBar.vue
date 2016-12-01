@@ -73,7 +73,7 @@ $size: 60px;
 }
 
 .ppc-percents {
-  @include circle(#{$size/1.1});
+  @include circle(#{$size/1.11});
   background: #fff;
   text-align: center;
   display: table;
