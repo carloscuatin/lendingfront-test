@@ -28,6 +28,9 @@ const mutations = {
       return false;
     });
   },
+  SET_PRODUCT_ACTIVATE_FETCH(state, product) {
+    state.productActivate = product;
+  },
   SET_PURCHASES(state, purchases) {
     state.purchases = purchases;
   },
@@ -93,6 +96,7 @@ const actions = {
       .then((response) => {
         commit('ADD_PURCHASE', response);
         dispatch('SET_NEW_PURCHASE', false);
+        dispatch('SET_PRODUCT_ACTIVATE_FETCH');
       })
       .catch((error) => {
         console.error(error);
@@ -108,10 +112,11 @@ const actions = {
         console.log(response);
       });
   },
-  DELETE_PURCHASE({ commit }, productId) {
+  DELETE_PURCHASE({ commit, dispatch }, productId) {
     httpDelete(`/purchases/${productId}/`)
       .then(() => {
         commit('DELETE_PURCHASE', productId);
+        dispatch('SET_PRODUCT_ACTIVATE_FETCH');
       })
       .catch((error) => {
         console.error(error);
@@ -122,6 +127,16 @@ const actions = {
   },
   SET_EDIT_PURCHASE({ commit }, state) {
     commit('SET_EDIT_PURCHASE', state);
+  },
+  SET_PRODUCT_ACTIVATE_FETCH({ commit, state }) {
+    const productId = state.productActivate.product_id;
+    httpGet(`/products/${productId}/`)
+      .then((response) => {
+        commit('SET_PRODUCT_ACTIVATE_FETCH', response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 };
 
