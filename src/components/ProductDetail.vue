@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.container">
+  <div :class="$style.container" v-if="!productEmpty">
     <ProductHeader
       :id="productActivate.product_id"
       :togglePurchase="togglePurchase"
@@ -25,6 +25,9 @@
         :clearPurchase="clearPurchase"/>
     </div>
     <ProductFooter :productActivate="productActivate" />
+  </div>
+  <div v-else :class="$style.empty">
+    Product not found
   </div>
 </template>
 
@@ -52,7 +55,8 @@ export default {
     purchases: state => state.purchases,
     productActivate: state => state.productActivate,
     newPurchase: state => state.newPurchase,
-    editPurchase: state => state.editPurchase
+    editPurchase: state => state.editPurchase,
+    productEmpty: state => Object.getOwnPropertyNames(state.productActivate).length > 0
   }),
   watch: {
     $route: 'fetchData'
@@ -88,6 +92,17 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #929292;
+  font-size: 18px;
+  font-weight: 500;
+  height: 100%;
+  margin-top: -20px;
 }
 
 .detail {
