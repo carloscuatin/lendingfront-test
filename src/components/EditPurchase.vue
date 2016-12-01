@@ -48,7 +48,7 @@ export default {
         product: this.purchaseActivate.product
       };
       this.$store.dispatch('EDIT_SAVE_PURCHASE', {
-        productId: this.purchaseActivate.id,
+        purchaseId: this.purchaseActivate.id,
         dataPurchase: data
       });
     }

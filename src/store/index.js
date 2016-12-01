@@ -48,9 +48,6 @@ const mutations = {
   ADD_PURCHASE(state, newPurchase) {
     state.purchases.push(newPurchase);
   },
-  EDIT_PURCHASE(state, text) {
-    state.activeNote.text = text;
-  },
   DELETE_PURCHASE(state, purchaseId) {
     state.purchases = state.purchases.filter(purchase => purchase.id !== purchaseId);
   },
@@ -105,11 +102,17 @@ const actions = {
   EDIT_PURCHASE({ commit }, purchaseId) {
     commit('SET_PURCHASE_ACTIVATE', purchaseId);
   },
-  EDIT_SAVE_PURCHASE({ commit }, data) {
-    const { productId, dataPurchase } = data;
-    httpPut(`/purchases/${productId}/`, dataPurchase)
-      .then((response) => {
-        console.log(response);
+  EDIT_SAVE_PURCHASE({ dispatch, state }, data) {
+    const { purchaseId, dataPurchase } = data;
+    const productId = state.productActivate.id;
+    httpPut(`/purchases/${purchaseId}/`, dataPurchase)
+      .then(() => {
+        dispatch('GET_PURCHASES', productId);
+        dispatch('SET_EDIT_PURCHASE', false);
+        dispatch('SET_PRODUCT_ACTIVATE_FETCH');
+      })
+      .catch((error) => {
+        console.error(error);
       });
   },
   DELETE_PURCHASE({ commit, dispatch }, productId) {
