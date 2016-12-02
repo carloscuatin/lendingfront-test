@@ -1,8 +1,6 @@
 <template>
   <header :class="$style.navbar">
-    <router-link to="/">
-      <img src="../assets/logo.png">
-    </router-link>
+    <img src="../assets/logo.png">
   </header>
 </template>
 
