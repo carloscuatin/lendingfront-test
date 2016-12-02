@@ -26,7 +26,7 @@
     </div>
     <ProductFooter :productActivate="productActivate" />
   </div>
-  <div v-else :class="$style.empty">
+  <div v-else :class="$style.emptyContainer">
     Product not found
   </div>
 </template>
@@ -56,7 +56,7 @@ export default {
     productActivate: state => state.productActivate,
     newPurchase: state => state.newPurchase,
     editPurchase: state => state.editPurchase,
-    productEmpty: state => Object.getOwnPropertyNames(state.productActivate).length > 0
+    productEmpty: state => Object.keys(state.productActivate).length === 0
   }),
   watch: {
     $route: 'fetchData'
@@ -94,7 +94,7 @@ export default {
   height: 100%;
 }
 
-.empty {
+.emptyContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,7 +102,6 @@ export default {
   font-size: 18px;
   font-weight: 500;
   height: 100%;
-  margin-top: -20px;
 }
 
 .detail {
