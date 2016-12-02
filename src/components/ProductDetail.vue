@@ -118,7 +118,7 @@ export default {
 }
 
 .icon {
-  font-size: 10px;
+  font-size: 10px !important;
   color: #ffffff;
   background-color: #757575;
   border-radius: 50%;
