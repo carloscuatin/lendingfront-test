@@ -1,4 +1,4 @@
-# lendingfront-frontend-test
+# lendingfront-test
 
 > A test for lendingfront with Vue.js
 
