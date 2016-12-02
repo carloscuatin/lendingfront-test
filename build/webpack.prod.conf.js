@@ -16,8 +16,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js'),
-    publicPath: 'https://carloscuatin.github.io/lendingfront-test'
+    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   vue: {
     loaders: utils.cssLoaders({
