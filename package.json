@@ -7,10 +7,12 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
+    "publish": "gh-pages -d dist",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
     "es6-promise": "^4.0.5",
+    "gh-pages": "^0.12.0",
     "isomorphic-fetch": "^2.2.1",
     "normalize.css": "^5.0.0",
     "vue": "^2.0.1",
