@@ -1,5 +1,6 @@
 <template>
-  <div :class="$style.container" v-if="!productEmpty">
+  <Loading v-if="loading"/>
+  <div :class="$style.container" v-else-if="!productEmpty">
     <ProductHeader
       :id="productActivate.product_id"
       :togglePurchase="togglePurchase"
@@ -38,6 +39,7 @@ import ProductFooter from './ProductFooter';
 import Purchase from './Purchase';
 import NewPurchase from './NewPurchase';
 import EditPurchase from './EditPurchase';
+import Loading from './Loading';
 
 export default {
   name: 'ProducDetail',
@@ -46,7 +48,8 @@ export default {
     ProductFooter,
     Purchase,
     NewPurchase,
-    EditPurchase
+    EditPurchase,
+    Loading
   },
   created() {
     this.fetchData();
@@ -56,7 +59,8 @@ export default {
     productActivate: state => state.productActivate,
     newPurchase: state => state.newPurchase,
     editPurchase: state => state.editPurchase,
-    productEmpty: state => Object.keys(state.productActivate).length === 0
+    productEmpty: state => Object.keys(state.productActivate).length === 0,
+    loading: state => state.loading
   }),
   watch: {
     $route: 'fetchData'

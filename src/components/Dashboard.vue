@@ -28,7 +28,8 @@ export default {
   computed: mapState({
     products: state => state.products,
     newPurchase: state => state.newPurchase,
-    editPurchase: state => state.editPurchase
+    editPurchase: state => state.editPurchase,
+    loading: state => state.loading
   })
 };
 </script>
@@ -75,6 +76,7 @@ export default {
 
 .product {
   width: 69%;
+  min-height: 250px;
   z-index: 1;
   box-shadow: -8px 0px 10px -3px rgba(0,0,0,0.2);
 }

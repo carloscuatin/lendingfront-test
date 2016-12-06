@@ -12,7 +12,8 @@ const initialState = {
   productActivate: {},
   newPurchase: false,
   editPurchase: false,
-  purchaseActivate: {}
+  purchaseActivate: {},
+  loading: true
 };
 
 const mutations = {
@@ -56,6 +57,9 @@ const mutations = {
   },
   SET_EDIT_PURCHASE(state, newState) {
     state.editPurchase = newState;
+  },
+  SET_LOADING(state, newState) {
+    state.loading = newState;
   }
 };
 
@@ -69,11 +73,13 @@ const actions = {
         console.error(error);
       });
   },
-  GET_PURCHASES({ commit }, productId) {
+  GET_PURCHASES({ commit, dispatch }, productId) {
+    dispatch('SET_LOADING', true);
     httpGet(`/purchases/?product__id=${productId}`)
       .then((response) => {
         commit('SET_PURCHASES', response.results);
         commit('SET_PRODUCT_ACTIVATE', productId);
+        dispatch('SET_LOADING', false);
       })
       .catch((error) => {
         console.error(error);
@@ -140,6 +146,9 @@ const actions = {
       .catch((error) => {
         console.log(error);
       });
+  },
+  SET_LOADING({ commit }, state) {
+    commit('SET_LOADING', state);
   }
 };
 

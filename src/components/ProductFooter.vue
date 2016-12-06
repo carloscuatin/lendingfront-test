@@ -48,6 +48,7 @@ export default {
 }
 
 .line {
+  max-width: 100%;
   position: absolute;
   background-color: #ffffff;
 }

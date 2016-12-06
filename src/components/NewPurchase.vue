@@ -10,7 +10,7 @@
         </select>
       </div>
       <div :class="$style.containerInput">
-        <input :class="$style.input" v-model="amountSell" type="text" placeholder="Amount to sell">
+        <input :class="$style.input" v-model="amountSell" type="number" placeholder="Amount to sell">
       </div>
     </div>
     <div :class="$style.functions">
