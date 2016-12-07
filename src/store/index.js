@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import createLogger from 'vuex/dist/logger';
 import { httpGet, httpPost, httpPut, httpDelete } from '../utils/fetch';
 
 Vue.use(Vuex);
@@ -13,23 +12,15 @@ const initialState = {
   newPurchase: false,
   editPurchase: false,
   purchaseActivate: {},
-  loading: true
+  loading: true,
+  error: ''
 };
 
 const mutations = {
   SET_PRODUCTS(state, products) {
     state.products = products;
   },
-  SET_PRODUCT_ACTIVATE(state, productId) {
-    state.products.filter((product) => {
-      if (product.id === parseInt(productId, 10)) {
-        state.productActivate = product;
-      }
-
-      return false;
-    });
-  },
-  SET_PRODUCT_ACTIVATE_FETCH(state, product) {
+  SET_PRODUCT_ACTIVATE(state, product) {
     state.productActivate = product;
   },
   SET_PURCHASES(state, purchases) {
@@ -60,6 +51,9 @@ const mutations = {
   },
   SET_LOADING(state, newState) {
     state.loading = newState;
+  },
+  SET_ERROR(state, error) {
+    state.error = error;
   }
 };
 
@@ -78,8 +72,7 @@ const actions = {
     httpGet(`/purchases/?product__id=${productId}`)
       .then((response) => {
         commit('SET_PURCHASES', response.results);
-        commit('SET_PRODUCT_ACTIVATE', productId);
-        dispatch('SET_LOADING', false);
+        dispatch('SET_PRODUCT_ACTIVATE', productId);
       })
       .catch((error) => {
         console.error(error);
@@ -99,10 +92,11 @@ const actions = {
       .then((response) => {
         commit('ADD_PURCHASE', response);
         dispatch('SET_NEW_PURCHASE', false);
-        dispatch('SET_PRODUCT_ACTIVATE_FETCH');
+        dispatch('SET_PRODUCT_ACTIVATE');
       })
       .catch((error) => {
         console.error(error);
+        dispatch('SET_ERROR', error.message);
       });
   },
   EDIT_PURCHASE({ commit }, purchaseId) {
@@ -115,17 +109,18 @@ const actions = {
       .then(() => {
         dispatch('GET_PURCHASES', productId);
         dispatch('SET_EDIT_PURCHASE', false);
-        dispatch('SET_PRODUCT_ACTIVATE_FETCH');
+        dispatch('SET_PRODUCT_ACTIVATE');
       })
       .catch((error) => {
         console.error(error);
+        dispatch('SET_ERROR', error.message);
       });
   },
   DELETE_PURCHASE({ commit, dispatch }, productId) {
     httpDelete(`/purchases/${productId}/`)
       .then(() => {
         commit('DELETE_PURCHASE', productId);
-        dispatch('SET_PRODUCT_ACTIVATE_FETCH');
+        dispatch('SET_PRODUCT_ACTIVATE');
       })
       .catch((error) => {
         console.error(error);
@@ -137,11 +132,12 @@ const actions = {
   SET_EDIT_PURCHASE({ commit }, state) {
     commit('SET_EDIT_PURCHASE', state);
   },
-  SET_PRODUCT_ACTIVATE_FETCH({ commit, state }) {
-    const productId = state.productActivate.product_id;
+  SET_PRODUCT_ACTIVATE({ commit, state, dispatch }, id) {
+    const productId = !id ? state.productActivate.id : id;
     httpGet(`/products/${productId}/`)
       .then((response) => {
-        commit('SET_PRODUCT_ACTIVATE_FETCH', response);
+        commit('SET_PRODUCT_ACTIVATE', response);
+        dispatch('SET_LOADING', false);
       })
       .catch((error) => {
         console.log(error);
@@ -149,14 +145,14 @@ const actions = {
   },
   SET_LOADING({ commit }, state) {
     commit('SET_LOADING', state);
+  },
+  SET_ERROR({ commit }, error) {
+    commit('SET_ERROR', error);
   }
 };
 
 export default new Vuex.Store({
   mutations,
   actions,
-  state: initialState,
-  plugins: process.env.NODE_ENV !== 'production'
-    ? [createLogger()]
-    : []
+  state: initialState
 });

@@ -60,15 +60,16 @@ export default {
     newPurchase: state => state.newPurchase,
     editPurchase: state => state.editPurchase,
     productEmpty: state => Object.keys(state.productActivate).length === 0,
-    loading: state => state.loading
+    loading: state => state.loading,
+    error: state => state.error
   }),
   watch: {
     $route: 'fetchData'
   },
   methods: {
     fetchData() {
-      this.$store.dispatch('GET_INVESTORS');
       this.$store.dispatch('GET_PURCHASES', this.$route.params.id);
+      this.$store.dispatch('GET_INVESTORS');
     },
     togglePurchase() {
       this.$store.dispatch('SET_NEW_PURCHASE', true);

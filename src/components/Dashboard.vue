@@ -28,8 +28,7 @@ export default {
   computed: mapState({
     products: state => state.products,
     newPurchase: state => state.newPurchase,
-    editPurchase: state => state.editPurchase,
-    loading: state => state.loading
+    editPurchase: state => state.editPurchase
   })
 };
 </script>
